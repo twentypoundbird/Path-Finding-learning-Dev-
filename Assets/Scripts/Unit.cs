@@ -14,10 +14,7 @@ public class Unit : MonoBehaviour
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
-    private void Update()
-    {
-        
-    }
+    
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccesful)
     {
