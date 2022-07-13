@@ -113,7 +113,7 @@ public class PathFinding : MonoBehaviour
             Vector2 directionNew = new Vector2(path[i-1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
             if(directionNew != directionOld)
             {
-                waypoints.Add(path[i].worldPosition);
+                waypoints.Add(path[i-1].worldPosition);
             }
             directionOld = directionNew;
         }
