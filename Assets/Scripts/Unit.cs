@@ -11,10 +11,14 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        //PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        target.GetComponent<Target>().TargetPositionChanged += RequestPath;
     }
 
-    
+    void RequestPath()
+    {
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+    }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccesful)
     {
@@ -29,6 +33,7 @@ public class Unit : MonoBehaviour
     IEnumerator FollowPath()
     {
         Vector3 currentWayPoint = path[0];
+        targetIndex = 0;
 
         while (true)
         {
@@ -56,7 +61,7 @@ public class Unit : MonoBehaviour
                 Gizmos.color = Color.black;
                 Gizmos.DrawCube(path[i], Vector3.one);
 
-                if(i== targetIndex)
+                if (i== targetIndex)
                 {
                     Gizmos.DrawLine(transform.position, path[i]);
                 }

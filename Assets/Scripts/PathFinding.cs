@@ -10,6 +10,8 @@ public class PathFinding : MonoBehaviour
     PathRequestManager requestManager;
     Grid grid;
 
+    Coroutine WayFinding;
+
     private void Awake()
     {
         requestManager = GetComponent<PathRequestManager>();
@@ -20,7 +22,11 @@ public class PathFinding : MonoBehaviour
 
     public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
-        StartCoroutine(FindPath(startPos, targetPos));
+        if(WayFinding != null)
+        {
+            StopCoroutine(WayFinding);
+        }
+        WayFinding = StartCoroutine(FindPath(startPos, targetPos));
     }
 
     IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
