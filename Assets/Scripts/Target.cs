@@ -14,7 +14,7 @@ public class Target : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit, groundMask))
+            if(Physics.Raycast(ray, out hit, 10000, groundMask))
             {
                 transform.position = hit.point;
                 TargetPositionChanged();
